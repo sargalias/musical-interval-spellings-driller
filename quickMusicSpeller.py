@@ -131,8 +131,8 @@ def runDrills():
 
 def getDrillType():
     msg = """
-Please write the interval you want to be tested on.
-The format is just "IntervalType [Direction: up/down]" """
+Please write the interval you'd like to be tested on. E.g. "P5".
+Type "quit" to quit."""
     print(msg)
     return userInput()
 
@@ -145,13 +145,15 @@ def runIndividualDrill(intervalType, direction=None):
     askQuestion(intervalType, direction, startingRoot, answer)
     usrAnswer = userAnswerInput()
     if usrAnswer.lower() != answer.lower():
-        print("WRONG. The correct answer is {}".format(answer))
+        print("Incorrect, the right answer is {}".format(answer))
         return False
     return True
 
 
 def userInput():
-    warningMsg = "Please write the interval you want to be tested on. E.g.: P5[, up/down]"
+    warningMsg = """
+Please write the interval you'd like to be tested on. E.g. "P5".
+Type "quit" to quit."""
     while True:
         usrInput = input("> ")
         if usrInput.lower() == "q" or usrInput.lower() == "quit":
@@ -172,7 +174,8 @@ def userAnswerInput():
         elif usrInput.lower() == "q" or usrInput.lower() == "quit":
             quit()
         elif usrInput[0].upper() + usrInput[1:].lower() not in ALLSPELLINGS:
-            print("That's not a note")
+            print("""That's not a note. Please write notes as letters, optionally followed by sharps or flats. For example "D#".
+Type "quit" to quit.""")
             continue
         else:
             return usrInput
